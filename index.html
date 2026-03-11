@@ -97,10 +97,15 @@
         async function main() {
             for (a of document.querySelectorAll("a")) {
                 let txt = document.createElement("pre");
-                txt.innerText = await (await fetch(a.href)).text();
+                let data = (await (await fetch(a.href)).text());
+                let lines = data.split('\n');
+
+                txt.innerText = lines.slice(2).join('\n');
                 a.parentElement.appendChild(txt)
+                a.innerHTML = lines[0];
             }
         }
+
         main()
     </script>
 </html>
