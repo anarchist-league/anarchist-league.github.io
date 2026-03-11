@@ -12,7 +12,6 @@
         </header>
         
         <main>
-            <p>日本のアナキズム運動を立て直す！色々と模索しながら日々闘争しています。</p>
             <ol>
                 <li>
                     <a href="./manifesto.txt">アナキスト同盟綱領</a>
@@ -66,13 +65,23 @@
             main {
                 padding: 50px;
                 font-size: 20px;
+              
                 ol {
                     font-size: 25px;
-                    a {
-                        color: darkred;
-                        text-decoration: none;
-                        &:hover {
-                            text-decoration: underline; 
+                    padding-left: 10px; 
+                    li {
+                        a {
+                            color: darkred;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline; 
+                            }
+                        }
+                        pre {
+                            font-size: 18px;
+                            text-wrap-mode: wrap;
+                            border-left: solid 1px grey;
+                            padding: 10px;
                         }
                     }
                 }
@@ -83,4 +92,15 @@
             }
         }
     </style>
+
+    <script>
+        async function main() {
+            for (a of document.querySelectorAll("a")) {
+                let txt = document.createElement("pre");
+                txt.innerText = await (await fetch(a.href)).text();
+                a.parentElement.appendChild(txt)
+            }
+        }
+        main()
+    </script>
 </html>
