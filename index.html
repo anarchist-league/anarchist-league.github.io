@@ -114,7 +114,7 @@
                 let data = await (await fetch(a.href)).text();
                 let lines = data.split('\n');
 
-                txt.innerText = lines.slice(2).join('\n');
+                txt.innerText = lines.slice(1).join('\n').trim();
                 a.parentElement.appendChild(txt)
                 a.innerHTML = lines[0];
             }
