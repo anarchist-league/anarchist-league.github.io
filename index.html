@@ -61,14 +61,22 @@
                 font-size: 30px;
             }
             main {
-                padding: 50px;
+                padding: 5vw;
                 font-size: 20px;
-              
                 ol {
                     font-size: 25px;
-                    padding-left: 10px; 
+                    padding-left: 2vw; 
+                    list-style: none;
+                    p {
+                        padding: 1vw;
+                        border-bottom: solid 2px transparent;
+                        border-image: linear-gradient(to right, red, black) 2;
+                    }
                     ol {
                         font-size: 22px;
+                        p {
+                            border: none;
+                        }
                     }
                     li {
                         a {
@@ -94,17 +102,6 @@
             ::selection {
                 background-color: #11223388;
                 color: white;
-            }
-        }
-
-        @media screen and (max-width: 1000px) {
-            main {
-                padding: 10px !important;
-                ol {
-                    padding-left: 0 !important; 
-                    list-style: none;
-                    display: flex;
-                }
             }
         }
     </style>
