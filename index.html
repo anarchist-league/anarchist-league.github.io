@@ -4,6 +4,12 @@
         <title>アナキスト同盟</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+        <meta property="og:title" content="アナキスト同盟">
+        <meta property="og:description" id="description">
+        <meta property="og:image" content="https://anarquismo.github.io/logo.png">
+        <meta property="og:url" content="https://anarquismo.github.io">
+        <meta property="og:type" content="website">
     </head>
     
     <body>
@@ -128,6 +134,9 @@
                 a.parentElement.appendChild(txt)
                 a.innerHTML = lines[0];
             }
+            let description = document.getElementById("description");
+            let previews = document.body.firstChild.innerText.slice(0, 100);
+            description.setAttribute("content", previews);
         }
 
         main()
