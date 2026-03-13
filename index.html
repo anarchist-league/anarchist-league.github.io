@@ -135,8 +135,8 @@
                 a.innerHTML = lines[0];
             }
             let description = document.getElementById("description");
-            let previews = document.body.firstChild.innerText.slice(0, 100);
-            description.setAttribute("content", previews);
+            let previews = document.querySelector("main").innerText.slice(0, 150);
+            description.setAttribute("content", previews + "...");
         }
 
         main()
