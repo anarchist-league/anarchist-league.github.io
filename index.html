@@ -14,28 +14,29 @@
         <main>
             <ol>
                 <li><a href="./manifesto.txt"></a></li>
+                <li><a href="./rep-intro.txt"></a></li>
                 <li>
-                    <p>理論 - Theory</p>
+                    <h3>理論 - Theory</h3>
                     <ol>
-                        <li><p><a href="./theory/alienation.txt"></a></p></li>
-                        <li><p><a href="./theory/review.txt"></a></p></li>
-                        <li><p><a href="./theory/history.txt"></a></p></li>
+                        <li><a href="./theory/alienation.txt"></a></li>
+                        <li><a href="./theory/review.txt"></a></li>
+                        <li><a href="./theory/history.txt"></a></li>
                     </ol>    
                 </li>
                 <li>
-                    <p>実践 - Praxis</p>
+                    <h3>実践 - Praxis</h3>
                     <ol>
-                        <li><p><a href="./praxis/struggle.txt"></a></p></li>
-                        <li><p><a href="./praxis/freetake.txt"></a></p></li>
-                        <li><p><a href="./praxis/autonomia.txt"></a></p></li>
-                        <li><p><a href="./praxis/propaganda.txt"></a></p></li>
+                        <li><a href="./praxis/struggle.txt"></a></li>
+                        <li><a href="./praxis/freetake.txt"></a></li>
+                        <li><a href="./praxis/autonomia.txt"></a></li>
+                        <li><a href="./praxis/propaganda.txt"></a></li>
                     </ol>
                 </li>
                 <li>
-                    <p>批評 - Critique</p>
+                    <h3>批評 - Critique</h3>
                     <ol>
-                        <li><p><a href="./critique/takashima.txt"></a></p></li>
-                        <li><p><a href="./critique/toyama.txt"></a></p></li>
+                        <li><a href="./critique/takashima.txt"></a></li>
+                        <li><a href="./critique/toyama.txt"></a></li>
                     </ol>
                 </li>
             </ol>
@@ -68,30 +69,26 @@
                     font-size: 25px;
                     padding-left: 2vw; 
                     list-style: none;
-                    p {
+                    h3 {
                         padding: 1vw;
+                        font-weight: normal;
                         border-bottom: solid 2px transparent;
                         border-image: linear-gradient(to right, red, black) 2;
                     }
                     ol {
                         font-size: 22px;
-                        p {
-                            border: none;
-                        }
                     }
                     li {
-                        a {
-                            color: darkred;
-                            text-decoration: none;
-                            &:hover {
-                                text-decoration: underline; 
-                            }
-                        }
-                        pre {
-                            font-size: 18px;
+                        div {
                             text-wrap-mode: wrap;
                             border-left: solid 1px grey;
-                            padding: 10px;
+                            padding: 1vw;
+                            margin: 1vw;
+                            p {
+                                font-size: 18px;
+                                margin: 0; padding: 0;
+                                margin-bottom: 1vh;
+                            }
                         }
                     }
                 }
@@ -100,6 +97,13 @@
                 background-color: darkgray;
                 padding: 50px;
             }
+            a {
+                color: darkred;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline; 
+                }
+            }
             ::selection {
                 background-color: #11223388;
                 color: white;
@@ -107,14 +111,18 @@
         }
     </style>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         async function main() {
             for (a of document.querySelectorAll("a")) {
-                let txt = document.createElement("pre");
+                let txt = document.createElement("div");
                 let data = await (await fetch(a.href)).text();
                 let lines = data.split('\n');
 
-                txt.innerText = lines.slice(1).join('\n').trim();
+                marked.use({ breaks: true, gfm: true });
+                data = lines.slice(1).join('\n').trim();
+                txt.innerHTML = marked.parse(data);
+
                 a.parentElement.appendChild(txt)
                 a.innerHTML = lines[0];
             }
